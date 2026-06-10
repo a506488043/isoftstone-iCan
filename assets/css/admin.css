@@ -1,0 +1,159 @@
+/**
+ * 后台管理页面统一样式
+ */
+
+/* 通用容器样式 */
+.wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* card容器自适应宽度 */
+.wrap .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* 筛选框样式 */
+.isoftstone-filter-box {
+    background: white;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.isoftstone-filter-box select {
+    margin-right: 10px;
+}
+
+/* 状态徽章样式 */
+.isoftstone-status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.isoftstone-status-正常 {
+    background: #d4edda;
+    color: #155724;
+}
+
+.isoftstone-status-迟到,
+.isoftstone-status-早退 {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.isoftstone-status-请假,
+.isoftstone-status-缺勤 {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.isoftstone-status-加班 {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.isoftstone-status-节假日 {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+/* 来源徽章样式 */
+.isoftstone-source-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.isoftstone-source-api {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.isoftstone-source-database {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* 统计卡片网格 */
+.isoftstone-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.isoftstone-stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.isoftstone-stat-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.isoftstone-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* 设置页面样式 */
+.required {
+    color: red;
+}
+
+.form-table {
+    width: 100%;
+}
+
+.form-table th {
+    width: 200px;
+}
+
+.form-table td {
+    width: auto;
+}
+
+/* 确保输入框和文本域宽度为100% */
+.form-table input[type="text"],
+.form-table textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* 覆盖WordPress默认的regular-text和large-text类 */
+.form-table input.regular-text,
+.form-table input.large-text,
+.form-table textarea.large-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* 按钮水平布局 */
+.isoftstone-submit-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.isoftstone-submit-buttons .button {
+    margin: 0;
+}

@@ -1,0 +1,626 @@
+/**
+ * 前端短代码样式 - 优化版本 v2.0
+ */
+
+/* ==================== 页面标题隐藏 ==================== */
+
+/* 隐藏包含考勤查询短代码的页面的标题 */
+body.page:has(.isoftstone-attendance-container) .entry-title,
+body.page-id-:has(.isoftstone-attendance-container) .entry-title,
+.single-page:has(.isoftstone-attendance-container) .entry-title {
+    display: none !important;
+}
+
+/* ==================== 全局样式 ==================== */
+
+.isoftstone-attendance-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    line-height: 1.6;
+}
+
+/* ==================== 查询表单 ==================== */
+
+.isoftstone-query-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.isoftstone-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: end;
+}
+
+.isoftstone-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.isoftstone-form-group label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #2d3748;
+    letter-spacing: 0.01em;
+}
+
+.isoftstone-form-group select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #1a202c;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.isoftstone-form-group select:hover {
+    border-color: #cbd5e0;
+}
+
+.isoftstone-form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.isoftstone-form-group select:disabled {
+    background-color: #f7fafc;
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* 按钮样式优化 */
+.isoftstone-btn-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.isoftstone-btn {
+    flex: 1;
+    min-height: 48px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.isoftstone-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+}
+
+.isoftstone-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.isoftstone-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.isoftstone-btn .btn-text {
+    flex: 1;
+    text-align: center;
+}
+
+/* 加载动画优化 */
+.loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+}
+
+.spinner {
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.isoftstone-btn.loading .loader {
+    display: block;
+}
+
+/* ==================== 统计卡片 ==================== */
+
+.isoftstone-summary {
+    margin-bottom: 24px;
+}
+
+.isoftstone-summary-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.isoftstone-metric {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.isoftstone-metric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0.5;
+}
+
+.isoftstone-metric:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.isoftstone-metric > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* 日均工时颜色 */
+.isoftstone-metric.metric-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
+
+.isoftstone-metric.metric-green:hover {
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
+
+.isoftstone-metric.metric-yellow {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+}
+
+.isoftstone-metric.metric-yellow:hover {
+    box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+}
+
+.isoftstone-metric.metric-red {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+}
+
+.isoftstone-metric.metric-red:hover {
+    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.95;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ==================== 日历样式 ==================== */
+
+.isoftstone-calendar-wrapper {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.isoftstone-calendar-grid {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* 星期标题 */
+.isoftstone-weekdays-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 16px 8px;
+}
+
+.isoftstone-weekday-cell {
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* 日历主体 */
+.isoftstone-calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #e2e8f0;
+}
+
+.isoftstone-calendar-day {
+    min-height: 100px;
+    min-width: 100%;
+    padding: 12px 8px;
+    background: white;
+    position: relative;
+    transition: background 0.2s ease;
+    cursor: default;
+}
+
+.isoftstone-calendar-day:hover {
+    background: #fafbfc;
+}
+
+/* 日期数字 */
+.isoftstone-day-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #718096;
+    background: #f7fafc;
+    padding: 4px 8px;
+    border-radius: 6px;
+    min-width: 28px;
+    text-align: center;
+}
+
+/* 周末高亮 - 只高亮周日（最后一列） */
+.isoftstone-calendar-day:nth-child(7n) .isoftstone-day-number {
+    color: #e53e3e;
+    background: #fff5f5;
+}
+
+/* 考勤信息卡片 */
+.isoftstone-attendance-info {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    margin-top: 32px;
+    transition: all 0.2s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.isoftstone-attendance-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 日历日期颜色编码 - 优化版 */
+.isoftstone-attendance-info.info-rest {
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+    border-color: #b2ebf2;
+}
+
+.isoftstone-attendance-info.info-rest .hours,
+.isoftstone-attendance-info.info-rest .status {
+    color: #00838f;
+}
+
+.isoftstone-attendance-info.info-leave {
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    border-color: #f8bbd0;
+}
+
+.isoftstone-attendance-info.info-leave .hours,
+.isoftstone-attendance-info.info-leave .status {
+    color: #c2185b;
+}
+
+.isoftstone-attendance-info.info-normal {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-color: #c8e6c9;
+}
+
+.isoftstone-attendance-info.info-normal .hours,
+.isoftstone-attendance-info.info-normal .status {
+    color: #2e7d32;
+}
+
+.isoftstone-attendance-info.info-overtime-mild {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    border-color: #ffecb3;
+}
+
+.isoftstone-attendance-info.info-overtime-mild .hours,
+.isoftstone-attendance-info.info-overtime-mild .status {
+    color: #f57c00;
+}
+
+.isoftstone-attendance-info.info-overtime-severe {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-color: #ffcdd2;
+}
+
+.isoftstone-attendance-info.info-overtime-severe .hours,
+.isoftstone-attendance-info.info-overtime-severe .status {
+    color: #c62828;
+}
+
+.isoftstone-attendance-info .hours {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #1a202c;
+    line-height: 1.2;
+}
+
+.isoftstone-attendance-info .status {
+    color: #4a5568;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* ==================== 提示信息 ==================== */
+
+.isoftstone-notice {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border-left: 4px solid;
+}
+
+.isoftstone-notice.isoftstone-warning {
+    background: #fffbeb;
+    border-color: #f59e0b;
+    color: #92400e;
+}
+
+.isoftstone-notice.isoftstone-error {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.isoftstone-notice h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.125rem;
+}
+
+.isoftstone-notice p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ==================== 警告框 ==================== */
+
+.isoftstone-alert {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: start;
+    border-left: 4px solid #ef4444;
+}
+
+.isoftstone-alert-error {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+.isoftstone-alert .alert-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+}
+
+.isoftstone-alert .alert-content h3 {
+    margin: 0 0 8px 0;
+    color: #991b1b;
+    font-size: 1.125rem;
+}
+
+.isoftstone-alert .alert-content p {
+    margin: 0;
+    color: #991b1b;
+    line-height: 1.6;
+}
+
+/* ==================== 空状态 ==================== */
+
+.isoftstone-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+}
+
+.isoftstone-empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.isoftstone-empty-state h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    color: #2d3748;
+}
+
+.isoftstone-empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* ==================== 加载状态 ==================== */
+
+.isoftstone-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.isoftstone-loading-content {
+    text-align: center;
+}
+
+.isoftstone-loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+.isoftstone-loading-text {
+    color: #4a5568;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ==================== 响应式设计 ==================== */
+
+@media (max-width: 768px) {
+    .isoftstone-attendance-container {
+        padding: 16px;
+    }
+
+    .isoftstone-page-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .isoftstone-query-card {
+        padding: 16px;
+    }
+
+    .isoftstone-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .isoftstone-summary-card {
+        grid-template-columns: 1fr;
+    }
+
+    .isoftstone-calendar-wrapper {
+        padding: 16px;
+    }
+
+    .isoftstone-weekdays-row {
+        padding: 12px 4px;
+    }
+
+    .isoftstone-weekday-cell {
+        font-size: 0.75rem;
+    }
+
+    .isoftstone-calendar-day {
+        min-height: 80px;
+        padding: 8px 4px;
+    }
+
+    .isoftstone-day-number {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        min-width: 24px;
+    }
+
+    .isoftstone-attendance-info {
+        margin-top: 28px;
+        padding: 6px 4px;
+    }
+
+    .isoftstone-attendance-info .hours {
+        font-size: 1rem;
+    }
+
+    .isoftstone-attendance-info .status {
+        font-size: 0.65rem;
+    }
+
+    .metric-value {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .isoftstone-calendar-day {
+        min-height: 70px;
+    }
+
+    .isoftstone-attendance-info .hours {
+        font-size: 0.875rem;
+    }
+
+    .isoftstone-attendance-info .status {
+        font-size: 0.6rem;
+    }
+}
+
+/* ==================== 打印样式 ==================== */
+
+@media print {
+    .isoftstone-query-card,
+    .isoftstone-btn {
+        display: none;
+    }
+
+    .isoftstone-calendar-wrapper {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
